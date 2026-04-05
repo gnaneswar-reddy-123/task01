@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Navigation Menu</title>
+
+<style>
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: transparent;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+/* Logo */
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Menu */
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+/* Hover Effect */
+.nav-links a:hover {
+  color: #00c6ff;
+}
+
+/* Scroll Effect */
+.navbar.scrolled {
+  background: #222;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+/* Sections for scrolling */
+section {
+  height: 100vh;
+  padding-top: 80px;
+  text-align: center;
+}
+
+#home {
+  background: linear-gradient(to right, #36d1dc, #5b86e5);
+  color: white;
+}
+
+#about { background: #f4f4f4; }
+#services { background: #ddd; }
+#contact { background: #bbb; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    background: #222;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
+
+.menu-toggle {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar" id="navbar">
+  <div class="logo">MySite</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
+
+<!-- Sections -->
+<section id="home"><h1>Home Section</h1></section>
+<section id="about"><h1>About Section</h1></section>
+<section id="services"><h1>Services Section</h1></section>
+<section id="contact"><h1>Contact Section</h1></section>
+
+<script>
+// Change navbar style on scroll
+window.addEventListener("scroll", function() {
+  const navbar = document.getElementById("navbar");
+  navbar.classList.toggle("scrolled", window.scrollY > 50);
+});
+
+// Toggle mobile menu
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
